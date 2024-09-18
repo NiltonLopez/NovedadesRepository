@@ -1,0 +1,100 @@
+﻿
+<div class="row mb-2">
+    <div class="col d-flex justify-content-between">
+        <a asp-controller="Home" asp-action="Index" class="link link-primary text-decoration-none fs-6">Volver</a>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col">
+        <h1 class="fs-2 fw-bold text-center">Historial de novedades</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div id="dvMensaje" class="alert alert-danger" hidden></div>
+    </div>
+</div>
+@* INICIO TABLA NOVEDADES VALOR *@
+<div class="row">
+    <div class="col justify-content-center">
+        <div id="dvNovedades" class="p-2 border rounded mb-2">
+            <div class="col d-flex justify-content-center">
+                <h8 class="fs-3 fw-bold">Novedades de Valor</h8>
+            </div>
+
+            <table id="gridHistorialValor" class="table table-primary table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Concepto</th>
+                        <th scope="col">Descripcion del Concepto</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Observación</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="tbod">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@* FIN TABLAS NOVEDADES VALOR *@
+
+@* INICIO NOVEDADES HORAS *@
+<div class="row">
+    <div class="col justify-content-center">
+        <div id="dvNovedades" class="p-2 border rounded mb-2">
+            <div class="col d-flex justify-content-center">
+                <h8 class="fs-3 fw-bold">Novedades de Horas</h8>
+            </div>
+            <table id="gridHistorialHoras" class="table table-primary table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Concepto</th>
+                        <th scope="col">Descripcion del Concepto</th>
+                        <th scope="col">Horas</th>
+                        <th scope="col">Observación</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@* FIN NOVEDADES HORAS *@
+<!--Inicio Grid Novedades FECHAS-->
+<div class="row">
+    <div class="col justify-content-center">
+        <div id="dvNovedades" class="p-2 border rounded mb-2">
+            <div class="col d-flex justify-content-center">
+                <h8 class="fs-3 fw-bold">Novedades de Fechas</h8>
+            </div>
+            <table id="gridHistorialFechas" class="table table-primary table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Concepto</th>
+                        <th scope="col">Descripcion del Concepto</th>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Fecha Fin</th>
+                        <th scope="col">Observación</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Fin Grid-->
+<script src="~/js/Novedades.js"></script>
+<script src="~/js/historial/GridHistorial.js"></script>

@@ -1,0 +1,230 @@
+﻿@using Novedades.AppWeb.Models.ViewModels
+@{
+    ViewData["Title"] = "Novedades";
+    List<SelectListItem> conceptos = (List<SelectListItem>)ViewBag.conceptos;
+    List<SelectListItem> empleados = (List<SelectListItem>)ViewBag.empleados;
+}
+
+<div class="row mb-2">
+    <div class="col d-flex justify-content-between">
+        <a asp-controller="Home" asp-action="Home" class="link link-primary text-decoration-none fs-6">Volver</a>
+        <a asp-controller="Home" asp-action="Historial" class="link link-primary text-decoration-none fs-6">Ver historial de novedades</a>
+    </div>
+</div>
+
+<!--Inicio Titulo Página-->
+<div class="row mb-3">
+    <div class="col d-flex justify-content-center">
+        <h1 class="fs-1 fw-bold">Registro de novedades</h1>
+    </div>
+</div>
+<!--Fin Titulo Página-->
+<!--Inicio Panel de acciones-->
+<div class="row justify-content-center mb-3">
+    <div class="col-sm-auto col-md-12 col-lg-auto d-flex justify-content-center my-1">
+        <button type="button" id="btnAgregarNovedad" class="bg-v fw-bold mx-2">Generar Novedad</button>
+        <button type="button" id="btnMostrarTipoConcepto" class="bg-v fw-bold mx-2">Mostrar Tipo Concepto</button>
+        <button id="btnLimpiar" onclick="limpiarCampos()" class="bg-g fw-bold mx-2">Limpiar</button>
+
+    </div>
+</div>
+<!--Fin Panel de acciones-->
+<!--Inicio Mensaje Alerta-->
+<div class="row">
+    <div class="col">
+        <div id="dvMensaje" class="alert alert-danger" hidden></div>
+    </div>
+</div>
+<!--Fin Mensaje Alerta-->
+<!--Inicio Grid Novedades VALOR-->
+<div class="row">
+    <div class="col justify-content-center">
+        <div id="dvNovedades" class="p-2 border rounded mb-2">
+            <div class="col d-flex justify-content-center sticky-header">
+                <h8 class="fs-3 fw-bold">Novedades de Valor</h8>
+            </div>
+
+            <table id="gridNovedadesValor" class="table table-primary table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Concepto</th>
+                        <th scope="col">Descripcion del Concepto</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Observación</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Fin Grid-->
+<!--Inicio Grid Novedades HORAS-->
+<div class="row">
+    <div class="col justify-content-center">
+        <div id="dvNovedades" class="p-2 border rounded mb-2">
+            <div class="col d-flex justify-content-center sticky-header">
+                <h8 class="fs-3 fw-bold">Novedades de Horas</h8>
+            </div>
+            <table id="gridNovedadesHoras" class="table table-primary table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Concepto</th>
+                        <th scope="col">Descripcion del Concepto</th>
+                        <th scope="col">Horas</th>
+                        <th scope="col">Observación</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Fin Grid-->
+<!--Inicio Grid Novedades FECHAS-->
+<div class="row">
+    <div class="col justify-content-center">
+        <div id="dvNovedades" class="p-2 border rounded mb-2">
+            <div class="col d-flex justify-content-center">
+                <h8 class="fs-3 fw-bold">Novedades de Fechas</h8>
+            </div>
+            <table id="gridNovedadesFechas" class="table table-primary table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Documento</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Concepto</th>
+                        <th scope="col">Descripcion del Concepto</th>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Fecha Fin</th>
+                        <th scope="col">Observación</th>
+                        <th scope="col">Borrar</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Fin Grid-->
+
+
+<div id="PeriodoEnCurso" class="d-flex justify-content-between">
+    <div><label class="my-auto" for="inpPeriodo">Periodo en curso:</label><input id="inpPeriodo" class="mx-2" type="text" value="2024-2" disabled /></div>
+    <button id="btnConfirmar" class="bg-v fw-bold">Confirmar</button>
+</div>
+
+<!--Inicio Modal-->
+<div class="modal" tabindex="-1" id="modalNovedad">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ingresar una nueva novedad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="txtIdContacto" value="0" />
+                    <label>Documento:</label>
+                <div class="search-container">
+                    <div class="searchInput" role="search">
+                        <input id="txtDocumento" class="form-control mb-2" type="search" placeholder="Documento del trabajador de su centro de costo" aria-label="Search">
+                    </div>
+                        <ul id="listaCedulas" class="options-list">
+                        </ul>
+                </div>
+                <div id="AvisoReporte" class="report-notification">
+                    <p><strong>Está reportando una novedad de: <label id="nombreEmpleado"></label></></strong></p>
+
+                </div>
+                <div class="mb-2">
+                    <label>Concepto de la Novedad: </label>
+                    @Html.DropDownList("conceptos", conceptos, "Selecciona un concepto", new { @class="w-auto mx-0" })
+
+                </div>
+                <div class="mb-2" id="dvValor">
+                    <label>Valor</label>
+                    <input type="number" class="form-control" id="txtValor" />
+                </div>
+                <div class="mb-2" id="dvHoras">
+                    <label>Horas</label>
+                    <input type="number" class="form-control" id="txtHoras" />
+                </div>
+                <div class="mb-2" id="dvFechas">
+                    <label>Fecha de Inicio</label>
+                    <input type="date" class="form-control" id="txtFechaInicio" />
+                    <label>Fecha de Fin</label>
+                    <input type="date" class="form-control" id="txtFechaFin" />
+                </div>
+                <div class="mb-2">
+                    <label>Observación</label>
+                    <input type="text" class="form-control" id="txtObservacion" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnGuardarNovedad">Agregar Novedad</button>
+                <button type="button" class="btn btn-danger" onclick="limpiarModal()" id="btnCerrarNovedad">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Fin Modal-->
+
+<!--inicio mensaje de mostrar tipo concepto-->
+<div class="modal" tabindex="-1" id="modalExito">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Éxito</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>La novedad se ha agregado con éxito.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--fin-->
+@* mensaje de confirmacion boton confirmar *@
+<div id="overlay" class="show"></div>
+
+<div id="modalConfirmacion" class="show">
+    <div id="contenidoModal">
+        <p>¿Está seguro que desea confirmar?</p>
+        <div id="botonesModal">
+            <button id="btnAceptar">Aceptar</button>
+            <button id="btnCancelar">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+@* mensaje de alerta usuario no encontrado *@
+
+<div id="alertaModal" class="modal">
+    <div class="modal-content custom-modal-content">
+        <button class="close-btn">X</button>
+        <a class="m-2" href="#">
+            <img src="~/imgs/icono_alerta.png" style="width: 100px; height: 100px;" />
+        </a>
+        <p>Debe ingresar un usuario válido.<br />
+           Por favor, verifique la información e intente nuevamente.</p>
+    </div>
+</div>
+
+
+<script src="~/js/App.js"></script>
+<script src="~/js/Calendario.js"></script>
+<script src="~/js/Grid.js"></script>
+<script src="~/js/Modal.js"></script>
+<script src="~/js/Novedades.js"></script>
+<script src="~/js/Empleado.js"></script>
+<script src="~/js/Conceptos.js"></script>
+<script src="~/js/Util.js"></script>

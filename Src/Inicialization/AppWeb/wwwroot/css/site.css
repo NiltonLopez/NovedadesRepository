@@ -1,0 +1,99 @@
+html {
+    font-size: 14px;
+    font-family: Verdana;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+button {
+    border-radius: 7px;
+    border: none;
+    color: #FFF;
+    height: 35px;
+    padding: 5px 10px 5px 10px;
+}
+
+input {
+    border: 1px solid #666;
+    padding: 5px;
+    border-radius: 7px;
+    width: 130px;
+}
+
+    input[disabled] {
+        background: #dcdcdc;
+    }
+
+select, option {
+    border: 1px solid #666;
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.bg-v {
+    background: #1e8f38;
+}
+
+    .bg-v:hover {
+        background: #1e6d30;
+    }
+
+.bg-a {
+    background: #407EC9;
+}
+
+    .bg-a:hover {
+        background: #3b71b2;
+    }
+
+.bcgk-a {
+    background: #407EC9;
+}
+
+.bg-g {
+    background: #878484;
+}
+
+    .bg-g:hover {
+        background: #878484;
+    }
+
+.bg-r {
+    background: #f00;
+}
+
+    .bg-r:hover {
+        background: #e20000;
+    }
+
+
+
+button[disabled] {
+    background: #dcdcdc;
+}
+
+    button[disabled]:hover {
+        background: #dcdcdc;
+    }
+
+

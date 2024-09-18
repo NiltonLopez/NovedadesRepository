@@ -1,0 +1,88 @@
+﻿#dvNovedades {
+    padding: 2px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    margin: 35px;
+    height: auto; Altura del 100% del viewport 
+    transform: translate(0%, -20%);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+    .table thead th {
+        background-color: #ffffff;
+        position: sticky;
+        top: 0;
+        z-index: 101;
+        padding: 10px;
+        margin: 0;
+        border: 3px solid #dee2e6;
+    }
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-primary {
+    background-color: #d6e4ff;
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 102;
+    padding: 10px 0;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+
+/*#btnConfirmar {
+    position: relative;
+    top: 0px;
+    right: 100px;
+}
+
+
+#PeriodoEnCurso {
+    top: 0px;
+    left: 50px;
+    margin-top: 40px;*/ /* Ajusta este valor según lo que necesites */
+/*}
+
+    #PeriodoEnCurso .my-auto {
+        margin-top: 10px;*/ /* Ajusta este valor según lo que necesites */
+    /*}*/
+
+
+#PeriodoEnCurso {
+    display: flex;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center; /* Alinea verticalmente el contenido */
+    width: 98%; /* O el ancho que necesites */
+    padding: 10px; /* Espacio adicional alrededor del contenido */
+}
+
+    #PeriodoEnCurso div {
+        /*display: flex;*/
+        align-items: center; /* Alinea verticalmente el contenido dentro del div */
+        margin-left: 28px; /* Empuja el botón hacia la derecha */
+    }
+
+#btnConfirmar {
+    margin-left: auto; /* Empuja el botón hacia la derecha */
+}
+
+ 
